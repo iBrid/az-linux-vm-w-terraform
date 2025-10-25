@@ -78,14 +78,25 @@ resource "azurerm_network_security_rule" "SSH" {
   network_security_group_name = azurerm_network_security_group.nsg.name
 }
 
+resource "tls_private_key" "ssh_key_pair" {
+  algorithm = "RSA"
+  rsa_bits  = 4096
+}
+
 resource "azurerm_linux_virtual_machine" "vm" {
-  name                  = "mylin-vm"
-  admin_username        = "azureuser"
-  admin_password        = var.admin_pw
-  size                  = "Standard_D2"
-  network_interface_ids = [azurerm_network_interface.nic.id]
-  resource_group_name   = var.resource_group_name
-  location              = var.location
+  name                            = "mylin-vm"
+  admin_username                  = "azureuser"
+  size                            = "Standard_D2"
+  disable_password_authentication = true
+  network_interface_ids           = [azurerm_network_interface.nic.id]
+  resource_group_name             = var.resource_group_name
+  location                        = var.location
+
+  admin_ssh_key {
+    username   = "azureuser"
+    public_key = tls_private_key.ssh_key_pair.public_key_openssh
+  }
+
 
   os_disk {
     caching              = "ReadWrite"
