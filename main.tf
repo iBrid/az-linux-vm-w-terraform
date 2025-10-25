@@ -24,7 +24,7 @@ resource "azurerm_resource_group" "rg" {
   location = var.location
 }
 
-/*resource "azurerm_virtual_network" "vnet" {
+resource "azurerm_virtual_network" "vnet" {
   name                = "mylin-vnet"
   address_space       = ["172.16.0.0/16"]
   location            = var.location
@@ -109,4 +109,4 @@ resource "azurerm_linux_virtual_machine" "vm" {
     version   = "latest"
     sku       = "20_04-lts-gen2"
   }
-}*/
+}
