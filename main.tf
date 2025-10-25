@@ -51,6 +51,7 @@ resource "azurerm_network_interface" "nic" {
     name                          = "ip_config"
     private_ip_address_allocation = "Dynamic"
     subnet_id                     = azurerm_subnet.snet.id
+    public_ip_address_id          = azurerm_public_ip.pip.id
   }
 }
 
@@ -62,6 +63,13 @@ resource "azurerm_network_security_group" "nsg" {
   tags = {
     environment = "Dev"
   }
+}
+
+resource "azurerm_public_ip" "pip" {
+  name                = "mylinux-pip"
+  allocation_method   = "Static"
+  resource_group_name = var.resource_group_name
+  location            = var.location
 }
 
 resource "azurerm_network_security_rule" "SSH" {
