@@ -9,8 +9,8 @@ variable "resource_group_name" {
   type    = string
 }
 
-variable "admin_pw" {
+/*variable "admin_pw" {
   type        = string
   sensitive   = true
   description = "password to vm"
-}
+}*/
