@@ -81,7 +81,7 @@ resource "azurerm_network_security_rule" "SSH" {
 resource "azurerm_linux_virtual_machine" "vm" {
   name                  = "mylin-vm"
   admin_username        = "azureuser"
-  admin_password        = var.vm_admin_pw
+  admin_password        = var.admin_pw
   size                  = "Standard_D2"
   network_interface_ids = [azurerm_network_interface.nic.id]
   resource_group_name   = var.resource_group_name
