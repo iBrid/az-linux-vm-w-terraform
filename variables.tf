@@ -9,7 +9,7 @@ variable "resource_group_name" {
   type    = string
 }
 
-variable "adminpw" {
+variable "vm_admin_pw" {
   type        = string
   sensitive   = true
   description = "password to vm"
