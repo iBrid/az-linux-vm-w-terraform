@@ -86,7 +86,7 @@ resource "tls_private_key" "ssh_key_pair" {
 resource "azurerm_linux_virtual_machine" "vm" {
   name                            = "mylin-vm"
   admin_username                  = "azureuser"
-  size                            = "Standard_Fsv2"
+  size                            = "Standard_F2s_v2"
   disable_password_authentication = true
   network_interface_ids           = [azurerm_network_interface.nic.id]
   resource_group_name             = var.resource_group_name
