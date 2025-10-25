@@ -78,6 +78,11 @@ resource "azurerm_network_security_rule" "SSH" {
   network_security_group_name = azurerm_network_security_group.nsg.name
 }
 
+resource "azurerm_network_interface_security_group_association" "nic_nsg_assoc" "name" {
+  network_interface_id      = azurerm_network_interface.nic.id
+  network_security_group_id = azurerm_network_security_group.nsg.id
+}
+
 resource "tls_private_key" "ssh_key_pair" {
   algorithm = "RSA"
   rsa_bits  = 4096
